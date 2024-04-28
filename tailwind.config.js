@@ -7,10 +7,11 @@ module.exports = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      colors: {
+        primary: "#fff9f0", //milky way
+        secondary: "#7096d1", //universe
+        tertiary: "#334eac", //planetary
+        alert: "#C40C0C", //red
       },
     },
   },

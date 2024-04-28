@@ -5,5 +5,5 @@ export default function Department({ params }) {
       notFound: true,
     };
   }
-  return <div className="text-red-600 text-5xl">{params.slug} Department</div>;
+  return <div className="text-tertiary text-5xl">{params.slug} Department</div>;
 }
