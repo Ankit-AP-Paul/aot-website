@@ -1,6 +1,7 @@
 import React from "react";
 
 export default function Map() {
+  const [a, setA] = React.useState();
   return (
     <div>
       <iframe
@@ -13,3 +14,5 @@ export default function Map() {
     </div>
   );
 }
+
+// moitreyo added this
