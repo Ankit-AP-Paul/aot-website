@@ -1,4 +1,6 @@
 import Map from "@/components/Map";
+import Navbar from "@/components/Navbar";
+
 import Link from "next/link";
 
 export default function Home() {
@@ -6,7 +8,7 @@ export default function Home() {
   return (
     <div className="bg-primary">
       <h1 className="text-tertiary text-5xl pb-10">Home</h1>
-      <div>
+      {/* <div>
         {departments.map((department, index) => (
           <div key={index}>
             <Link href={`/department/${department}`}>
@@ -14,6 +16,9 @@ export default function Home() {
             </Link>
           </div>
         ))}
+      </div> */}
+      <div className="relative w-full flex items-center justify-center">
+        <Navbar className="top-2" />
       </div>
     </div>
   );
