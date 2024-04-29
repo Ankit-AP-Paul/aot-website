@@ -11,6 +11,7 @@ module.exports = {
         primary: "#fff9f0", //milky way
         secondary: "#7096d1", //universe
         tertiary: "#334eac", //planetary
+        soothing: "#f1f5fa",
         alert: "#C40C0C", //red
       },
     },
