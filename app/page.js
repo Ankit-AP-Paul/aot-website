@@ -1,5 +1,6 @@
 import Map from "@/components/Map";
 import Navbar from "@/components/Navbar";
+import HeroCarousel from "@/components/hero";
 
 import Link from "next/link";
 
@@ -7,7 +8,7 @@ export default function Home() {
   const departments = ["CSE", "CSBS", "ME", "ECE", "EE", "EEE", "MCA"];
   return (
     <div className="bg-primary">
-      <h1 className="text-tertiary text-5xl pb-10">Home</h1>
+      {/* <h1 className="text-tertiary text-5xl pb-10">Home</h1> */}
       {/* <div>
         {departments.map((department, index) => (
           <div key={index}>
@@ -17,8 +18,11 @@ export default function Home() {
           </div>
         ))}
       </div> */}
-      <div className="relative w-full flex items-center justify-center">
+      <div className="relative w-screen flex flex-col items-center justify-center">
         <Navbar className="top-2" />
+        <HeroCarousel/>
+        {/* Dummy Div */}
+        <div className="h-96 w-screen"></div>
       </div>
     </div>
   );
