@@ -2,14 +2,13 @@
 import React, { useRef, useState } from 'react'
 
 // Import Swiper React components
-import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { cn } from "@/utils/cn";
 
 
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
-// import 'swiper/css/navigation';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/thumbs';
 import 'swiper/css/grid';
@@ -33,18 +32,31 @@ import {
 
 // TBEL
 const images = [
-    "/assets/images/carousel1.webp",
-    "/assets/images/carousel2.webp",
-    "/assets/images/carousel3.webp",
-    "/assets/images/carousel4.webp",
-    "/assets/images/carousel5.webp",
+    "/assets/images/carousel1.jpg",
+    "/assets/images/carousel2.jpg",
+    "/assets/images/carousel3.jpg",
+    "/assets/images/carousel4.jpg",
+    "/assets/images/carousel5.jpg",
 ]
 
 const HeroCarousel = () => {
     const sliderRef = useRef();
-    const [currImageIndex, setCurrImageIndex] = useState(0);
-    const [prevImageIndex, setPrevImageIndex] = useState(images.length - 1);
-    const [nextImageIndex, setNextImageIndex] = useState(1);
+    const [indexes, setIndexes] = useState({
+        curr: 0,
+        prev: images.length - 1,
+        next: 1,
+    });
+    
+    // Update function that sets all indices at once
+    const updateIndices = (current) => {
+        setIndexes({
+            curr: current,
+            prev: current === 0 ? images.length - 1 : current - 1,
+            next: current === images.length - 1 ? 0 : current + 1,
+        });
+    };
+    
+    
 
 
     return (
@@ -54,23 +66,21 @@ const HeroCarousel = () => {
                 spaceBetween={0}
                 slidesPerView={1}
                 onSlideChange={(swiper) => {
-                    setCurrImageIndex(swiper.realIndex);
-                    setPrevImageIndex(swiper.realIndex == 0 ? images.length - 1 : (swiper.realIndex - 1));
-                    setNextImageIndex(swiper.realIndex == images.length - 1 ? 0 : (swiper.realIndex + 1));
+                    updateIndices(swiper.realIndex)
 
                 }}
                 onSwiper={it => {
                     sliderRef.current = it;
-                    setCurrImageIndex(it.realIndex);
+                    updateIndices(it.realIndex)
                 }}
                 loop={true}
                 className='w-full h-screen bg-red-400'
                 pagination={true} // Add pagination prop
-                autoplay={{
-                    delay: 3500,
-                    disableOnInteraction: false,
-                    pauseOnMouseEnter: true,
-                }}
+                // autoplay={{
+                //     delay: 3500,
+                //     disableOnInteraction: false,
+                //     pauseOnMouseEnter: true,
+                // }}
                 keyboard={{
                     enabled: true,
                     onlyInViewport: true,
@@ -98,15 +108,17 @@ const HeroCarousel = () => {
             <div className="absolute top-[50%] translate-y-[-50%] z-10 w-full">
                 <div className="flex flex-row justify-between">
                     <HeroNavigationButton
+                        key={`prev-${indexes.prev}`}
                         onClick={() => sliderRef.current?.slidePrev()}
                         iconAsset={'/assets/icons/left-arrow.svg'}
-                        imageIndex={prevImageIndex}
+                        imageIndex={indexes.prev}
                         images={images}
                     />
                     <HeroNavigationButton
+                        key={`next-${indexes.next}`}
                         onClick={() => sliderRef.current?.slideNext()}
                         iconAsset={'/assets/icons/right-arrow.svg'}
-                        imageIndex={nextImageIndex}
+                        imageIndex={indexes.next}
                         images={images}
                     />
                 </div>
@@ -139,7 +151,7 @@ export const HeroNavigationButton = ({
                 className='absolute z-20'
                 // src={bgHoverImage}
                 src={images[imageIndex]}
-                alt='image'
+                alt={images[imageIndex]}
                 style={{
                     objectFit: "cover"
                 }}
