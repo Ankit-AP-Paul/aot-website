@@ -1,13 +1,15 @@
 'use client'
-import React from 'react'
+import React, { useRef, useState } from 'react'
 
 // Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
+import { cn } from "@/utils/cn";
+
 
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
-import 'swiper/css/navigation';
+// import 'swiper/css/navigation';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/thumbs';
 import 'swiper/css/grid';
@@ -31,64 +33,118 @@ import {
 
 // TBEL
 const images = [
-    "https://images.unsplash.com/photo-1503424886307-b090341d25d1?q=80&w=2076&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1549558549-415fe4c37b60?q=80&w=2019&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1426604966848-d7adac402bff?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1461301214746-1e109215d6d3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "https://images.unsplash.com/photo-1495312040802-a929cd14a6ab?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+    "/assets/images/carousel1.webp",
+    "/assets/images/carousel2.webp",
+    "/assets/images/carousel3.webp",
+    "/assets/images/carousel4.webp",
+    "/assets/images/carousel5.webp",
 ]
 
 const HeroCarousel = () => {
-    return (
-        <Swiper
-            spaceBetween={0}
-            slidesPerView={1}
-            onSlideChange={() => console.log('slide change')}
-            onSwiper={(swiper) => console.log(swiper)}
-            loop={true}
-            className='w-screen h-screen bg-red-400'
-            navigation={{
-                prevEl: '.swiper-button-prev',
-                nextEl: '.swiper-button-next',
-            }}
-            pagination={true} // Add pagination prop
-            autoplay={{
-                delay: 3500,
-                disableOnInteraction: false,
-                pauseOnMouseEnter: true,
-            }}
-            keyboard={{
-                enabled: true,
-                onlyInViewport: true,
-            }}
-            mousewheel={{
-                forceToAxis: true,
-            }}
-            modules={[Autoplay, Pagination, Navigation, EffectCoverflow, Thumbs, FreeMode, Keyboard, Mousewheel]}
-        >
-            {images.map((image, index) => (
-                <SwiperSlide key={index} >
-                    <Image
-                        src={image}
-                        alt="image"
-                        className='h-screen w-screen '
-                        style={{
-                            objectFit: "cover"
-                        }}
-                        fill={true}
-                    />
-                </SwiperSlide>
-            ))}
+    const sliderRef = useRef();
+    const [currImageIndex, setCurrImageIndex] = useState(0);
+    const [prevImageIndex, setPrevImageIndex] = useState(images.length - 1);
+    const [nextImageIndex, setNextImageIndex] = useState(1);
 
-            <div className="swiper-button-prev relative">
-                <div className='absolute h-20 w-20 bg-black' onClick={(swiper) => {swiper.slidePrev}}></div>
+
+    return (
+        <div className='relative'>
+            <Swiper
+
+                spaceBetween={0}
+                slidesPerView={1}
+                onSlideChange={(swiper) => {
+                    setCurrImageIndex(swiper.realIndex);
+                    setPrevImageIndex(swiper.realIndex == 0 ? images.length - 1 : (swiper.realIndex - 1));
+                    setNextImageIndex(swiper.realIndex == images.length - 1 ? 0 : (swiper.realIndex + 1));
+
+                }}
+                onSwiper={it => {
+                    sliderRef.current = it;
+                    setCurrImageIndex(it.realIndex);
+                }}
+                loop={true}
+                className='w-full h-screen bg-red-400'
+                pagination={true} // Add pagination prop
+                autoplay={{
+                    delay: 3500,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: true,
+                }}
+                keyboard={{
+                    enabled: true,
+                    onlyInViewport: true,
+                }}
+                mousewheel={{
+                    forceToAxis: true,
+                }}
+                modules={[Autoplay, Pagination, Navigation, EffectCoverflow, Thumbs, FreeMode, Keyboard, Mousewheel]}
+            >
+                {images.map((image, index) => (
+                    <SwiperSlide key={index} >
+                        <Image
+                            src={image}
+                            alt="image"
+                            className='h-screen w-full '
+                            style={{
+                                objectFit: "cover"
+                            }}
+                            fill={true}
+                        />
+                    </SwiperSlide>
+                ))}
+            </Swiper>
+            {/* Navigation Buttons */}
+            <div className="absolute top-[50%] translate-y-[-50%] z-10 w-full">
+                <div className="flex flex-row justify-between">
+                    <HeroNavigationButton
+                        onClick={() => sliderRef.current?.slidePrev()}
+                        iconAsset={'/assets/icons/left-arrow.svg'}
+                        imageIndex={prevImageIndex}
+                        images={images}
+                    />
+                    <HeroNavigationButton
+                        onClick={() => sliderRef.current?.slideNext()}
+                        iconAsset={'/assets/icons/right-arrow.svg'}
+                        imageIndex={nextImageIndex}
+                        images={images}
+                    />
+                </div>
             </div>
-            <div className="swiper-button-next relative">
-                <div className='absolute h-20 w-20 bg-black' onClick={(swiper) => {swiper.slideNext}}></div>
-            </div>
-        </Swiper>
+        </div>
     );
 }
 
 export default HeroCarousel;
 
+export const HeroNavigationButton = ({
+    onClick,
+    iconAsset,
+    twClass = '',
+    imageIndex,
+    images,
+}) => {
+    // console.log(bgHoverImage)
+
+    return (
+        <div className={cn(
+            'w-40 h-40 rounded-full bg-red-500 text-white relative cursor-pointer overflow-hidden',
+            twClass
+        )}
+            onClick={onClick}
+        >
+            <Image src={iconAsset} alt='icon' width={10000} height={10000} className='absolute'></Image>
+            <Image
+                key={images[imageIndex]} 
+                className='absolute z-20'
+                // src={bgHoverImage}
+                src={images[imageIndex]}
+                alt='image'
+                style={{
+                    objectFit: "cover"
+                }}
+                fill={true}
+            />
+        </div>
+    )
+}

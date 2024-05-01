@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    margin: 0;
+}
+
+
+.image-swiper-button-prev{
+    background-image: url('https://www.svgrepo.com/show/532030/circle-heat.svg');
+}

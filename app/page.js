@@ -1,8 +1,8 @@
 import Map from "@/components/Map";
 import Navbar from "@/components/Navbar";
-import HeroCarousel from "@/components/hero";
 
 import Link from "next/link";
+import HeroCarousel from "../components/hero";
 
 export default function Home() {
   const departments = ["CSE", "CSBS", "ME", "ECE", "EE", "EEE", "MCA"];
@@ -18,11 +18,11 @@ export default function Home() {
           </div>
         ))}
       </div> */}
-      <div className="relative w-screen flex flex-col items-center justify-center">
+      <div className="relative w-full flex flex-col">
         <Navbar className="top-2" />
         <HeroCarousel/>
         {/* Dummy Div */}
-        <div className="h-96 w-screen"></div>
+        <div className="h-[2000px] w-full bg-red-500"></div>
       </div>
     </div>
   );
