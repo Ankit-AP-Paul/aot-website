@@ -41,7 +41,7 @@ const Sidebar = () => {
         </li>
         <li
           className={`py-2 px-4 cursor-pointer ${
-            activeItem === "item3" ? "bg-gray-100" : ""
+            activeItem === "item4" ? "bg-gray-100" : ""
           } transition-colors`}
           onMouseEnter={() =>
             handleMouseEnter("item4", "Content for Resources")
@@ -50,7 +50,7 @@ const Sidebar = () => {
         </li>
         <li
           className={`py-2 px-4 cursor-pointer ${
-            activeItem === "item3" ? "bg-gray-100" : ""
+            activeItem === "item5" ? "bg-gray-100" : ""
           } transition-colors`}
           onMouseEnter={() =>
             handleMouseEnter("item5", "Content for Admission")
