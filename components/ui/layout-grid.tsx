@@ -31,26 +31,28 @@ export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
 
   return (
     <div
-      className="w-full h-full p-10 grid grid-cols-1 sm:grid-cols-2
-       md:grid-cols-3 max-w-7xl mx-auto gap-4 relative">
+
+      className="w-full h-full p-10 grid grid-cols-1  justify-items-center items-center sm:grid-cols-2
+       md:grid-cols-3  mx-auto gap-4 relative">
+
       {cards.map((card, i) => (
         <div key={i} className={cn(card.className, "")}>
           <motion.div
             onClick={() => handleClick(card)}
             className={cn(
               card.className,
-              "relative sky-blue-gradient overflow-hidden lg:w-80  lg:h-[400px] border-2 border-cyan-600",
+              "relative sky-blue-gradient overflow-hidden lg:w-80 lg:h-[400px] border-2 border-cyan-600",
               selected?.id === card.id
-                ? "rounded-lg cursor-pointer absolute inset-0 h-1/2 w-full md:w-1/2 m-auto z-50 flex justify-center items-center flex-wrap flex-col"
+                ? "rounded-lg cursor-pointer absolute inset-0 lg:h-2/3 lg:w-1/2 md:w-1/2 m-auto z-50 flex justify-center items-center flex-wrap flex-col"
                 : lastSelected?.id === card.id
                 ? "z-40 bg-white rounded-xl h-full w-full"
-                : "bg-white rounded-xl h-full w-full"
+                : "bg-white rounded-xl "
             )}
             layout>
             {selected?.id === card.id && <SelectedCard selected={selected} />}
-            <BlurImage card={card} />
+            <BlurImage card={card} selected={selected} />
 
-            <EventDetails />
+            {selected?.id !== card.id && <EventDetails />}
           </motion.div>
         </div>
       ))}
@@ -93,7 +95,13 @@ const EventDetails = () => {
   );
 };
 
-const BlurImage = ({ card }: { card: Card }) => {
+const BlurImage = ({
+  card,
+  selected,
+}: {
+  card: Card;
+  selected: Card | null;
+}) => {
   const [loaded, setLoaded] = useState(false);
   return (
     <>
@@ -104,8 +112,9 @@ const BlurImage = ({ card }: { card: Card }) => {
         onLoad={() => setLoaded(true)}
         fill
         className={cn(
-          "clippy object-cover object-top absolute inset-0 h-full w-full transition duration-200",
-          loaded ? "blur-none" : "blur-md"
+          " object-cover object-top absolute inset-0 h-full w-full transition duration-200",
+          loaded ? "blur-none" : "blur-md",
+          selected?.id === card.id ? "" : "clippy"
         )}
         alt="thumbnail"
         style={{}}
@@ -116,13 +125,13 @@ const BlurImage = ({ card }: { card: Card }) => {
 
 const SelectedCard = ({ selected }: { selected: Card | null }) => {
   return (
-    <div className="bg-transparent h-full w-full flex flex-col justify-end rounded-lg shadow-2xl relative z-[60]">
+    <div className="bg-transparent lg:h-full lg:w-full flex flex-col justify-end rounded-lg shadow-2xl relative z-[60]">
       <motion.div
         initial={{
           opacity: 0,
         }}
         animate={{
-          opacity: 0.6,
+          opacity: 0.7,
         }}
         className="absolute inset-0 h-full w-full bg-black opacity-60 z-10"
       />
