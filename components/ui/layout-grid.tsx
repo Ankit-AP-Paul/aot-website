@@ -40,7 +40,7 @@ export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
             onClick={() => handleClick(card)}
             className={cn(
               card.className,
-              "relative sky-blue-gradient overflow-hidden lg:w-80 lg:h-96",
+              "relative sky-blue-gradient overflow-hidden lg:w-80  lg:h-[400px] border-2 border-cyan-600",
               selected?.id === card.id
                 ? "rounded-lg cursor-pointer absolute inset-0 h-1/2 w-full md:w-1/2 m-auto z-50 flex justify-center items-center flex-wrap flex-col"
                 : lastSelected?.id === card.id
@@ -86,7 +86,7 @@ const EventDetails = () => {
           Techquisitive
         </div>
         <hr className="w-1/5 mb-2 border-2 border-sky-300" />
-        <span className="text-slate-600 ">SC cse Student's Chapter</span>
+        <span className="text-slate-600 ">CSE Student's Chapter</span>
       </div>
       <div className="bg-[#34c6eb] p-2 mb-4 mx-6  rounded-full text-center font-bold text-white cursor-pointer">
         Read More
