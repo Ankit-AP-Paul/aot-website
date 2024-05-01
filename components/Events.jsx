@@ -1,15 +1,19 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
+import { Plus_Jakarta_Sans } from "next/font/google";
+
 import { LayoutGrid } from "./ui/layout-grid";
 import p1 from "@/app/data/images/p1.jpg";
 import p2 from "@/app/data/images/p2.jpg";
 import p3 from "@/app/data/images/p3.jpg";
 import p4 from "@/app/data/images/p4.jpg";
 
+const inter = Plus_Jakarta_Sans({ subsets: ["latin"] });
+
 function Events() {
   return (
-    <div className="bg-soothing  mx-auto py-8 bg-grid-[#9042f5]/[0.1]">
-      <div className="h-screen w-full">
+    <div className="bg-soothing   py-8 bg-grid-[#9042f5]/[0.1]">
+      <div className="h-max w-screen">
         <LayoutGrid cards={cards} />
       </div>
     </div>
@@ -59,12 +63,9 @@ const SkeletonThree = () => {
 const SkeletonFour = () => {
   return (
     <div>
-      <p className="font-bold text-4xl text-white">Rivers are serene</p>
-      <p className="font-normal text-base text-white"></p>
-      <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
-        A house by the river is a place of peace and tranquility. It&apos;s the
-        perfect place to relax, unwind, and enjoy life.
-      </p>
+      <div className={`text-white text-center text-base ${inter.className}`}>
+        Techfiesta
+      </div>
     </div>
   );
 };

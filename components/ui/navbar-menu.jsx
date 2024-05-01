@@ -19,21 +19,24 @@ export const MenuItem = ({ setActive, active, item, children }) => {
       <motion.p
         transition={{ duration: 0.3 }}
         className="cursor-pointer  text-black hover:opacity-[0.9] "
-        style={{ color: "#000" }}>
+        style={{ color: "#000" }}
+      >
         {item}
       </motion.p>
       {active !== null && (
         <motion.div
           initial={{ opacity: 0, scale: 0.85, y: 10 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={transition}>
+          transition={transition}
+        >
           {active === item && (
             <div className="absolute top-[calc(100%_+_1.2rem)] left-1/2 transform -translate-x-1/2 pt-4">
               <motion.div
                 transition={transition}
                 layoutId="active"
                 className="bg-secondary  backdrop-blur-sm rounded-2xl overflow-hidden border border-black/[0.2]  shadow-xl"
-                style={{ backgroundColor: "#fff9f0", borderColor: "#334eac" }}>
+                style={{ backgroundColor: "#fff9f0", borderColor: "#334eac" }}
+              >
                 <motion.div layout className="w-max h-full p-4">
                   {children}
                 </motion.div>
@@ -51,7 +54,8 @@ export const Menu = ({ setActive, children }) => {
     <nav
       onMouseLeave={() => setActive(null)}
       className="relative rounded-full boder border-transparent bg-secondary shadow-input flex justify-center space-x-4 px-8 py-6 "
-      style={{ backgroundColor: "#fff9f0", borderColor: "#334eac" }}>
+      style={{ backgroundColor: "#fff9f0", borderColor: "#334eac" }}
+    >
       {children}
     </nav>
   );
@@ -70,12 +74,14 @@ export const ProductItem = ({ title, description, href, src }) => {
       <div>
         <h4
           className="text-xl font-bold mb-1 text-black "
-          style={{ color: "#000" }}>
+          style={{ color: "#000" }}
+        >
           {title}
         </h4>
         <p
           className="text-neutral-700 text-sm max-w-[10rem] "
-          style={{ color: "#7096d1" }}>
+          style={{ color: "#7096d1" }}
+        >
           {description}
         </p>
       </div>
@@ -87,8 +93,10 @@ export const HoveredLink = ({ children, ...rest }) => {
   return (
     <Link
       {...rest}
+      href={"/"}
       className="text-neutral-700  hover:text-black "
-      style={{ color: "#000" }}>
+      style={{ color: "#000" }}
+    >
       {children}
     </Link>
   );
