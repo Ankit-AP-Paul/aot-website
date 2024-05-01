@@ -8,6 +8,7 @@ import {
   ProductItem,
 } from "@/components/ui/navbar-menu";
 import { cn } from "@/utils/cn";
+import Sidebar from "./Sidebar";
 
 export default function NavbarHome({ className }) {
   const [active, setActive] = useState(null);
@@ -21,7 +22,9 @@ export default function NavbarHome({ className }) {
         {/* Academics */}
 
         <MenuItem setActive={setActive} active={active} item="Academics">
-          <div>ToDo</div>
+          <div>
+            <Sidebar />
+          </div>
         </MenuItem>
 
         {/* Research */}
