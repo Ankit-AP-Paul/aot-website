@@ -32,8 +32,7 @@ export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
   return (
     <div
       className="w-full h-full p-10 grid grid-cols-1 sm:grid-cols-2
-       md:grid-cols-3 max-w-7xl mx-auto gap-4 relative"
-    >
+       md:grid-cols-3 max-w-7xl mx-auto gap-4 relative">
       {cards.map((card, i) => (
         <div key={i} className={cn(card.className, "")}>
           <motion.div
@@ -47,8 +46,7 @@ export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
                 ? "z-40 bg-white rounded-xl h-full w-full"
                 : "bg-white rounded-xl h-full w-full"
             )}
-            layout
-          >
+            layout>
             {selected?.id === card.id && <SelectedCard selected={selected} />}
             <BlurImage card={card} />
 
@@ -141,8 +139,7 @@ const SelectedCard = ({ selected }: { selected: Card | null }) => {
           duration: 0.3,
           ease: "easeInOut",
         }}
-        className="relative px-8 pb-4 z-[70]"
-      >
+        className="relative px-8 pb-4 z-[70]">
         {selected?.content}
       </motion.div>
     </div>
