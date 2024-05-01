@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/navbar-menu";
 import { cn } from "@/utils/cn";
 
-export default function Navbar({ className }) {
+export default function NavbarHome({ className }) {
   const [active, setActive] = useState(null);
   return (
     <div
@@ -19,10 +19,13 @@ export default function Navbar({ className }) {
       )}>
       <Menu setActive={setActive}>
         {/* Academics */}
+
         <MenuItem setActive={setActive} active={active} item="Academics">
-          <div>Hello</div>
+          <div>ToDo</div>
         </MenuItem>
+
         {/* Research */}
+
         <MenuItem setActive={setActive} active={active} item="Research">
           <div className="flex flex-col space-y-4 text-sm">
             <HoveredLink href="#">Current Research</HoveredLink>
@@ -30,7 +33,9 @@ export default function Navbar({ className }) {
             <HoveredLink href="#">Research facilities</HoveredLink>
           </div>
         </MenuItem>
+
         {/* Students */}
+
         <MenuItem setActive={setActive} active={active} item="Students">
           <div className="flex flex-col space-y-4 text-sm">
             <HoveredLink href="#">Life@AOT</HoveredLink>
@@ -39,7 +44,9 @@ export default function Navbar({ className }) {
             <HoveredLink href="#">Events</HoveredLink>
           </div>
         </MenuItem>
+
         {/* Faculty */}
+
         <MenuItem setActive={setActive} active={active} item="Faculty">
           <div className="flex flex-col space-y-4 text-sm">
             <HoveredLink href="#">Faculty List</HoveredLink>

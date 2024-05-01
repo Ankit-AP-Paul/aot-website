@@ -17,7 +17,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#fff9f0", //milky way
+        primary: "#cdf2fb",
         secondary: "#7096d1", //universe
         tertiary: "#334eac", //planetary
         soothing: "#f1f5fa",
