@@ -119,7 +119,7 @@ const SkeletonFour = () => {
         Register online : Link
       </div>
       <div
-        className={`text-white text-center ml-5 mt-8 mb-6 border-white border-2 rounded p-2 px-auto cursor-pointer ${inter.className}`}
+        className={`text-zinc-100 text-center bg-[#40a3c2] ml-5 mt-8 mb-6 border-white border-2 rounded p-2 px-auto ${inter.className}`}
       >
         Download Brochure
       </div>
