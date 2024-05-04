@@ -1,5 +1,5 @@
 'use client'
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 // Import Swiper React components
 import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react';
@@ -51,6 +51,20 @@ const HeroCarousel = () => {
     };
     const [hoveredLeftNav, setHoveredLeftNav] = useState(false)
     const [hoveredRightNav, setHoveredRightNav] = useState(false)
+
+    const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
 
 
@@ -115,8 +129,8 @@ const HeroCarousel = () => {
                         hovered={hoveredLeftNav}
                         setHovered={setHoveredLeftNav}
                         twClass='ml-3 '
-                        height={80}
-                        width={80}
+                        height={windowWidth < 768 ? 60 : 70}
+                        width={windowWidth < 768 ? 60 : 70}
                         imageOffsetSide='left'
                     />
                     <HeroNavigationButton
@@ -128,8 +142,8 @@ const HeroCarousel = () => {
                         hovered={hoveredRightNav}
                         setHovered={setHoveredRightNav}
                         twClass='mr-3'
-                        height={80}
-                        width={80}
+                        height={windowWidth < 768 ? 60 : 70}
+                        width={windowWidth < 768 ? 60 : 70}
                         imageOffsetSide='right'
                     />
                 </div>
