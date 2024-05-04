@@ -2,17 +2,14 @@
 import React, { useRef, useState } from 'react'
 
 // Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react';
 import { cn } from "@/utils/cn";
 
 
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
-import 'swiper/css/effect-coverflow';
-import 'swiper/css/thumbs';
-import 'swiper/css/grid';
-import 'swiper/css/free-mode';
+import 'swiper/css/effect-fade';
 import Image from 'next/image';
 
 // import required modules
@@ -20,12 +17,9 @@ import {
     Autoplay,
     Pagination,
     Navigation,
-    EffectCoverflow,
-    Thumbs,
-    FreeMode,
-    Grid,
     Keyboard,
     Mousewheel,
+    EffectFade,
 } from 'swiper/modules';
 
 
@@ -40,13 +34,13 @@ const images = [
 ]
 
 const HeroCarousel = () => {
-    const sliderRef = useRef();
+    const sliderRef = useRef<SwiperClass>(null);
     const [indexes, setIndexes] = useState({
         curr: 0,
         prev: images.length - 1,
         next: 1,
     });
-    
+
     // Update function that sets all indices at once
     const updateIndices = (current) => {
         setIndexes({
@@ -55,32 +49,34 @@ const HeroCarousel = () => {
             next: current === images.length - 1 ? 0 : current + 1,
         });
     };
-    
-    
+    const [hoveredLeftNav, setHoveredLeftNav] = useState(false)
+    const [hoveredRightNav, setHoveredRightNav] = useState(false)
+
+
 
 
     return (
         <div className='relative'>
             <Swiper
-
+                effect={'fade'}
                 spaceBetween={0}
                 slidesPerView={1}
                 onSlideChange={(swiper) => {
-                    updateIndices(swiper.realIndex)
-
+                    updateIndices(swiper.realIndex);
                 }}
-                onSwiper={it => {
-                    sliderRef.current = it;
-                    updateIndices(it.realIndex)
+                onSwiper={(swiper) => {
+                    sliderRef.current = swiper;
+                    updateIndices(swiper.realIndex);
                 }}
                 loop={true}
-                className='w-full h-screen bg-red-400'
-                pagination={true} // Add pagination prop
-                // autoplay={{
-                //     delay: 3500,
-                //     disableOnInteraction: false,
-                //     pauseOnMouseEnter: true,
-                // }}
+                className='w-full h-screen bg-red-400 relative transition-opacity ease-in-out'
+                speed={1000}
+                pagination={{ clickable: true }} // Update pagination prop
+                autoplay={{
+                    delay: 5500,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: true,
+                }}
                 keyboard={{
                     enabled: true,
                     onlyInViewport: true,
@@ -88,22 +84,25 @@ const HeroCarousel = () => {
                 mousewheel={{
                     forceToAxis: true,
                 }}
-                modules={[Autoplay, Pagination, Navigation, EffectCoverflow, Thumbs, FreeMode, Keyboard, Mousewheel]}
+                modules={[Autoplay, Pagination, Navigation, EffectFade, Keyboard, Mousewheel]} // Remove unnecessary modules
             >
                 {images.map((image, index) => (
-                    <SwiperSlide key={index} >
+                    <SwiperSlide key={index} className='absolute top-0 left-0 opacity-0'>
                         <Image
                             src={image}
                             alt="image"
-                            className='h-screen w-full '
+                            className='h-screen w-full'
                             style={{
                                 objectFit: "cover"
                             }}
                             fill={true}
+                            loading='lazy'
                         />
                     </SwiperSlide>
                 ))}
             </Swiper>
+
+
             {/* Navigation Buttons */}
             <div className="absolute top-[50%] translate-y-[-50%] z-10 w-full">
                 <div className="flex flex-row justify-between">
@@ -113,6 +112,12 @@ const HeroCarousel = () => {
                         iconAsset={'/assets/icons/left-arrow.svg'}
                         imageIndex={indexes.prev}
                         images={images}
+                        hovered={hoveredLeftNav}
+                        setHovered={setHoveredLeftNav}
+                        twClass='ml-3 '
+                        height={80}
+                        width={80}
+                        imageOffsetSide='left'
                     />
                     <HeroNavigationButton
                         key={`next-${indexes.next}`}
@@ -120,6 +125,12 @@ const HeroCarousel = () => {
                         iconAsset={'/assets/icons/right-arrow.svg'}
                         imageIndex={indexes.next}
                         images={images}
+                        hovered={hoveredRightNav}
+                        setHovered={setHoveredRightNav}
+                        twClass='mr-3'
+                        height={80}
+                        width={80}
+                        imageOffsetSide='right'
                     />
                 </div>
             </div>
@@ -135,28 +146,61 @@ export const HeroNavigationButton = ({
     twClass = '',
     imageIndex,
     images,
+    height = 100,
+    width = 100,
+    hovered,
+    setHovered,
+    imageOffsetSide = 'none'
+}:{
+    onClick: () => void,
+    iconAsset: string,
+    twClass?: string,
+    imageIndex: number,
+    images: string[],
+    height?: number,
+    width?: number,
+    hovered: boolean,
+    setHovered: (value: boolean) => void,
+    imageOffsetSide?: 'none' | 'left' | 'right'
 }) => {
-    // console.log(bgHoverImage)
+
 
     return (
         <div className={cn(
-            'w-40 h-40 rounded-full bg-red-500 text-white relative cursor-pointer overflow-hidden',
+            'rounded-full text-white relative cursor-pointer overflow-hidden',
             twClass
         )}
             onClick={onClick}
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
+            style={{
+                height,
+                width,
+            }}
         >
-            <Image src={iconAsset} alt='icon' width={10000} height={10000} className='absolute'></Image>
             <Image
-                key={images[imageIndex]} 
-                className='absolute z-20'
+                key={images[imageIndex]}
+                className={cn(
+                    'absolute z-20 transition-all duration-500 ease-out transform rounded-full',
+                    hovered ? `opacity-100 scale-100 translate-x-0` : cn(
+                        'opacity-0 scale-0',
+                        imageOffsetSide === 'left' ? 'translate-x-[-50%]' : imageOffsetSide === 'right' ? 'translate-x-[50%]' : 'translate-x-0',
+                    ),
+                )}
                 // src={bgHoverImage}
                 src={images[imageIndex]}
                 alt={images[imageIndex]}
                 style={{
-                    objectFit: "cover"
+                    objectFit: "cover",
+                    // translate: imageOffsetOnside ? `40px` : 0
                 }}
                 fill={true}
             />
+            <Image src={iconAsset} alt='icon' width={10000} height={10000} className='absolute z-30'></Image>
+            <div style={{
+                width: 10000,
+                height: 10000,
+            }} className='absolute bg-black opacity-35'></div>
         </div>
     )
 }
