@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ['images.unsplash.com'], // Add the domains of the image sources you want to support
-    },
+        domains: ['images.unsplash.com', 'unsplash.com']
+    }
 };
 
 export default nextConfig;
