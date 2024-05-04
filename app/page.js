@@ -6,7 +6,6 @@ import HeroCarousel from "@/components/hero";
 
 
 import Link from "next/link";
-import HeroCarousel from "../components/hero";
 
 export default function Home() {
   // const departments = ["CSE", "CSBS", "ME", "ECE", "EE", "EEE", "MCA"];
