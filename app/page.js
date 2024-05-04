@@ -1,9 +1,12 @@
 import Events from "@/components/Events";
 import Map from "@/components/Map";
+
 import NavbarHome from "@/components/NavbarHome";
 import HeroCarousel from "@/components/hero";
 
+
 import Link from "next/link";
+import HeroCarousel from "../components/hero";
 
 export default function Home() {
   // const departments = ["CSE", "CSBS", "ME", "ECE", "EE", "EEE", "MCA"];
@@ -19,8 +22,10 @@ export default function Home() {
           </div>
         ))}
       </div> */}
-      <div className="relative w-screen flex flex-col items-center justify-center">
+
+      <div className="relative w-full flex flex-col items-center justify-center">
         <NavbarHome className="top-2" />
+
       </div>
       <HeroCarousel />
       <Events />
