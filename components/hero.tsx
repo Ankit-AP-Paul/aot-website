@@ -52,9 +52,10 @@ const HeroCarousel = () => {
     const [hoveredLeftNav, setHoveredLeftNav] = useState(false)
     const [hoveredRightNav, setHoveredRightNav] = useState(false)
 
-    const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
+    const [windowWidth, setWindowWidth] = useState<number>(0);
 
     useEffect(() => {
+        setWindowWidth(window.innerWidth);
         const handleResize = () => {
             setWindowWidth(window.innerWidth);
         };
