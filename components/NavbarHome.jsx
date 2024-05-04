@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/navbar-menu";
 import { cn } from "@/utils/cn";
 import Sidebar from "./Sidebar";
+import Link from "next/link";
 
 export default function NavbarHome({ className }) {
   const [active, setActive] = useState(null);
@@ -21,8 +22,8 @@ export default function NavbarHome({ className }) {
       <Menu setActive={setActive}>
         {/* Academics */}
 
-        <MenuItem setActive={setActive} active={active} item="Academics">
-          <div>
+        <MenuItem setActive={setActive} active={active} item="Academics ">
+          <div className="text-lg font-normal">
             <Sidebar />
           </div>
         </MenuItem>
@@ -30,7 +31,7 @@ export default function NavbarHome({ className }) {
         {/* Research */}
 
         <MenuItem setActive={setActive} active={active} item="Research">
-          <div className="flex flex-col space-y-4 text-sm">
+          <div className="flex flex-col space-y-4 text-lg font-normal">
             <HoveredLink href="#">Current Research</HoveredLink>
             <HoveredLink href="#">Past Research</HoveredLink>
             <HoveredLink href="#">Research facilities</HoveredLink>
@@ -40,7 +41,7 @@ export default function NavbarHome({ className }) {
         {/* Students */}
 
         <MenuItem setActive={setActive} active={active} item="Students">
-          <div className="flex flex-col space-y-4 text-sm">
+          <div className="flex flex-col space-y-4 text-lg font-normal">
             <HoveredLink href="#">Life@AOT</HoveredLink>
             <HoveredLink href="#">Campus Facilities</HoveredLink>
             <HoveredLink href="#">Career Services</HoveredLink>
@@ -51,7 +52,7 @@ export default function NavbarHome({ className }) {
         {/* Faculty */}
 
         <MenuItem setActive={setActive} active={active} item="Faculty">
-          <div className="flex flex-col space-y-4 text-sm">
+          <div className="flex flex-col space-y-4 text-lg font-normal">
             <HoveredLink href="#">Faculty List</HoveredLink>
             <HoveredLink href="#">Faculty Positions</HoveredLink>
             <HoveredLink href="#">Career Benefits@AOT</HoveredLink>

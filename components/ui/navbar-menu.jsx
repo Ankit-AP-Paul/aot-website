@@ -18,8 +18,7 @@ export const MenuItem = ({ setActive, active, item, children }) => {
     <div onMouseEnter={() => setActive(item)} className="relative ">
       <motion.p
         transition={{ duration: 0.3 }}
-        className="cursor-pointer  text-black hover:opacity-[0.9] "
-        style={{ color: "#000" }}>
+        className="cursor-pointer  text-white hover:opacity-[0.9] ">
         {item}
       </motion.p>
       {active !== null && (
@@ -32,7 +31,7 @@ export const MenuItem = ({ setActive, active, item, children }) => {
               <motion.div
                 transition={transition}
                 layoutId="active"
-                className="bg-secondary  backdrop-blur-sm rounded-2xl overflow-hidden border border-black/[0.2]  shadow-xl"
+                className="  backdrop-blur-sm rounded-2xl overflow-hidden border border-black/[0.2]  shadow-xl"
                 style={{ backgroundColor: "#fff9f0", borderColor: "#334eac" }}>
                 <motion.div layout className="w-max h-full p-4">
                   {children}
@@ -50,10 +49,8 @@ export const Menu = ({ setActive, children }) => {
   return (
     <nav
       onMouseLeave={() => setActive(null)}
-      className="relative rounded-full boder border-transparent bg-secondary shadow-input flex justify-center space-x-10 px-8 py-6 w-max"
+      className="relative rounded-full boder border-transparent shadow-input flex justify-center space-x-10 px-8 py-6 w-max text-xl font-bold"
       style={{
-        backgroundColor: "#fff9f0",
-        borderColor: "#334eac",
         margin: "0 auto",
       }}>
       {children}
@@ -89,11 +86,7 @@ export const ProductItem = ({ title, description, href, src }) => {
 
 export const HoveredLink = ({ children, ...rest }) => {
   return (
-    <Link
-      {...rest}
-      href={"/"}
-      className="text-neutral-700  hover:text-black "
-      style={{ color: "#000" }}>
+    <Link {...rest} href={"/"} className="text-black">
       {children}
     </Link>
   );
