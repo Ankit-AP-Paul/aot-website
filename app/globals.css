@@ -2,14 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-
 body {
-    margin: 0;
+  margin: 0;
 }
 
-
-.image-swiper-button-prev{
-    background-image: url('https://www.svgrepo.com/show/532030/circle-heat.svg');
+.image-swiper-button-prev {
+  background-image: url("https://www.svgrepo.com/show/532030/circle-heat.svg");
 }
 
 .sky-blue-gradient {
@@ -86,4 +84,3 @@ body {
     100% 55.02%
   );
 }
-

@@ -23,7 +23,7 @@ const poppins = Poppins({
 function Events() {
   return (
     <div className="bg-soothing   py-8 bg-grid-[#9042f5]/[0.1]">
-      <div className="h-max w-screen">
+      <div className="h-max w-full">
         <LayoutGrid cards={cards} />
       </div>
     </div>
@@ -74,8 +74,7 @@ const SkeletonFour = () => {
   return (
     <div className="flex flex-col items-center">
       <div
-        className={`text-white text-center text-4xl font-medium tracking-wide mb-5 uppercase ${montserrat.className}`}
-      >
+        className={`text-white text-center text-4xl font-medium tracking-wide mb-5 uppercase ${montserrat.className}`}>
         Techfiesta
       </div>
       <div className={`text-white text-center mb-8 ${inter.className}`}>
@@ -84,8 +83,7 @@ const SkeletonFour = () => {
         and tranquility is a way of life.
       </div>
       <table
-        className={`text-white text-center border-t-[0.5px] border-white rounded mb-8 mx-auto`}
-      >
+        className={`text-white text-center border-t-[0.5px] border-white rounded mb-8 mx-auto`}>
         <tbody>
           <tr className="border-b-[0.5px] border-white">
             <td className="px-6 py-4 border-r-[0.5px] border-white ">
@@ -119,8 +117,7 @@ const SkeletonFour = () => {
         Register online : Link
       </div>
       <div
-        className={`text-zinc-100 text-center bg-[#40a3c2] ml-5 mt-8 mb-6 border-white border-2 rounded p-2 px-auto ${inter.className}`}
-      >
+        className={`text-zinc-100 text-center bg-[#40a3c2] ml-5 mt-8 mb-6 border-white border-2 rounded p-2 px-auto ${inter.className}`}>
         Download Brochure
       </div>
     </div>

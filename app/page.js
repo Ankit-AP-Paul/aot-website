@@ -4,7 +4,6 @@ import Map from "@/components/Map";
 import NavbarHome from "@/components/NavbarHome";
 import HeroCarousel from "@/components/hero";
 
-
 import Link from "next/link";
 
 export default function Home() {
@@ -24,12 +23,9 @@ export default function Home() {
 
       <div className="relative w-full flex flex-col items-center justify-center">
         <NavbarHome className="top-2" />
-
       </div>
       <HeroCarousel />
       <Events />
-      {/* Dummy Div */}
-      <div className="h-96 w-screen"></div>
     </div>
   );
 }
