@@ -1,7 +1,9 @@
+import Banner from "@/components/Banner";
 import Events from "@/components/Events";
 import Map from "@/components/Map";
 
 import NavbarHome from "@/components/NavbarHome";
+
 import HeroCarousel from "@/components/hero";
 
 import Link from "next/link";
@@ -20,7 +22,7 @@ export default function Home() {
           </div>
         ))}
       </div> */}
-
+      <Banner />
       <div className="relative w-full flex flex-col items-center justify-center">
         <NavbarHome className="top-2" />
       </div>
