@@ -25,7 +25,9 @@ export default function Home() {
         <NavbarHome className="top-2" />
       </div>
       <HeroCarousel />
-      <Events />
+      <div className="relative w-full">
+        <div className="absolute z-10 w-full"><Events /></div>
+      </div>
     </div>
   );
 }

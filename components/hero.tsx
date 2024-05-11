@@ -67,6 +67,22 @@ const HeroCarousel = () => {
         };
     }, []);
 
+    useEffect(() => {
+        const parallaxContainer = document.getElementsByClassName('parallaxContainer');
+
+        const handleScroll = () => {
+            const scrollPosition = window.scrollY;
+            Array.from(parallaxContainer).forEach((element: HTMLElement) => {
+                element.style.transform = `translateY(${scrollPosition * 0.5}px)`;
+            });
+        };
+
+        window.addEventListener('scroll', handleScroll);
+      
+        return () => {
+          window.removeEventListener('scroll', handleScroll);
+        };
+      }, []);
 
 
 
@@ -84,7 +100,7 @@ const HeroCarousel = () => {
                     updateIndices(swiper.realIndex);
                 }}
                 loop={true}
-                className='w-full h-screen bg-red-400 relative transition-opacity ease-in-out'
+                className='w-full h-screen bg-red-400 relative transition-opacity ease-in-out parallaxContainer'
                 speed={1000}
                 pagination={{ clickable: true }} // Update pagination prop
                 autoplay={{
@@ -102,7 +118,7 @@ const HeroCarousel = () => {
                 modules={[Autoplay, Pagination, Navigation, EffectFade, Keyboard, Mousewheel]} // Remove unnecessary modules
             >
                 {images.map((image, index) => (
-                    <SwiperSlide key={index} className='absolute top-0 left-0 opacity-0'>
+                    <SwiperSlide key={index} className='absolute top-0 left-0 opacity-0 z-[-10]'>
                         <Image
                             src={image}
                             alt="image"
@@ -120,7 +136,7 @@ const HeroCarousel = () => {
 
             {/* Navigation Buttons */}
             <div className="absolute top-[50%] translate-y-[-50%] z-10 w-full">
-                <div className="flex flex-row justify-between">
+                <div className="flex flex-row justify-between parallaxContainer">
                     <HeroNavigationButton
                         key={`prev-${indexes.prev}`}
                         onClick={() => sliderRef.current?.slidePrev()}
