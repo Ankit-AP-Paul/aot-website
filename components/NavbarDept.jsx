@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/navbar-menu";
 import { cn } from "@/utils/cn";
 import Sidebar from "./Sidebar";
+import Link from "next/link";
 
 export default function NavbarDept({ className }) {
   const [active, setActive] = useState(null);
@@ -21,11 +22,13 @@ export default function NavbarDept({ className }) {
       <Menu setActive={setActive}>
         {/* Home */}
 
-        <HoveredLink href="/">Home</HoveredLink>
+        <Link href="/" className="text-white">
+          Home
+        </Link>
 
         {/* People */}
         <MenuItem setActive={setActive} active={active} item="People">
-          <div className="flex flex-col space-y-4 text-sm">
+          <div className="flex flex-col space-y-4 text-lg font-normal mix">
             <HoveredLink href="#">Faculty Members</HoveredLink>
             <HoveredLink href="#">Staff Members</HoveredLink>
           </div>
@@ -33,7 +36,7 @@ export default function NavbarDept({ className }) {
 
         {/* Students */}
         <MenuItem setActive={setActive} active={active} item="Students">
-          <div className="flex flex-col space-y-4 text-sm">
+          <div className="flex flex-col space-y-4 text-lg font-normal mix">
             <HoveredLink href="#">Placement</HoveredLink>
             <HoveredLink href="#">Student Activvity</HoveredLink>
             <HoveredLink href="#">Life@AOT</HoveredLink>
@@ -43,14 +46,14 @@ export default function NavbarDept({ className }) {
 
         {/* Academics */}
         <MenuItem setActive={setActive} active={active} item="Academics">
-          <div>
+          <div className="text-lg font-normal mix">
             <Sidebar />
           </div>
         </MenuItem>
 
         {/* Research */}
         <MenuItem setActive={setActive} active={active} item="Research">
-          <div className="flex flex-col space-y-4 text-sm">
+          <div className="flex flex-col space-y-4 text-lg font-normal mix">
             <HoveredLink href="#">Current Research</HoveredLink>
             <HoveredLink href="#">Past Research</HoveredLink>
             <HoveredLink href="#">Research facilities</HoveredLink>
@@ -58,13 +61,19 @@ export default function NavbarDept({ className }) {
         </MenuItem>
 
         {/* Achivements & Events */}
-        <HoveredLink href="#">Achivements & Events</HoveredLink>
+        <Link href="#" className="text-white">
+          Achivements & Events
+        </Link>
 
         {/* Join Us */}
-        <HoveredLink href="#">Join Us</HoveredLink>
+        <Link href="#" className="text-white">
+          Join Us
+        </Link>
 
         {/* Contact Us */}
-        <HoveredLink href="#">Contact Us</HoveredLink>
+        <Link href="#" className="text-white">
+          Contact Us
+        </Link>
       </Menu>
     </div>
   );
