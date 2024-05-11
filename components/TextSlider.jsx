@@ -21,7 +21,7 @@ const TextSlider = ({ name, tagline }) => {
 
   return (
     <Slider {...settings}>
-      <div className="text-xl ">
+      <div className="text-xl font-semibold ">
         <h3>{name}</h3>
       </div>
       <div className="text-lg">

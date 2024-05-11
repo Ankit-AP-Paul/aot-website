@@ -49,20 +49,23 @@ export default function Banner() {
         }
         styles={{
           navigation: { fontFamily: "Arial, Helvetica, sans-serif" },
+
           navigationBarSmall: {
-            backgroundColor: "aliceblue",
+            backgroundColor: "rgba(0, 0,0, 0.6)",
           },
           navigationCardSmall: {
-            backgroundColor: "aliceblue",
+            backgroundColor: "rgba(0, 0, 0, 0.6)",
           },
           navigationBarLarge: {
-            backgroundColor: "aliceblue",
+            color: "white",
+            backgroundColor: "rgba(0, 0, 0, 0.6)",
           },
           animatinDelay: 5,
           zIndex: 100000,
         }}>
         {windowSize.width > 1000 ? (
           <ul style={{ marginRight: "20px" }}>
+            {/* TODO: Add search bar -------------------------------------------------------------------------- */}
             <li>Search</li>
           </ul>
         ) : (

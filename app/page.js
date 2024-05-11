@@ -1,6 +1,4 @@
-"use client";
-
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 import Events from "@/components/Events";
 import Map from "@/components/Map";
@@ -9,27 +7,9 @@ import NavbarHome from "@/components/NavbarHome";
 import HeroCarousel from "@/components/hero";
 
 import Link from "next/link";
+import Header from "@/components/Header";
 
 export default function Home() {
-  const [windowSize, setWindowSize] = useState({
-    width: undefined,
-    height: undefined,
-  });
-
-  useEffect(() => {
-    function handleResize() {
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-    }
-
-    window.addEventListener("resize", handleResize);
-
-    handleResize();
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
   // const departments = ["CSE", "CSBS", "ME", "ECE", "EE", "EEE", "MCA"];
   return (
     <div className="bg-primary">
@@ -43,12 +23,7 @@ export default function Home() {
           </div>
         ))}
       </div> */}
-      <Banner />
-      {windowSize.width > 1000 && (
-        <div className="relative w-full flex flex-col items-center justify-center">
-          <NavbarHome className="top-8" />
-        </div>
-      )}
+      <Header />
       <HeroCarousel />
       <Events />
     </div>
