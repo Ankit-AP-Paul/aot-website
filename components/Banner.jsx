@@ -30,13 +30,13 @@ export default function Banner() {
     <div>
       <ResponsiveNavbar
         logo={
-          <div className="flex gap-5 ml-20 mr-20">
+          <div className="flex gap-5 ml-20 mr-20 h-10">
             <img
               src="assets/images/aot-logo.png"
               alt="logo"
               className="h-10 w-20"
             />
-            {windowSize.width > 1000 && (
+            {windowSize.width > 1100 && (
               <div>
                 <div className="h-1"></div>
                 <TextSlider
@@ -51,22 +51,34 @@ export default function Banner() {
           navigation: { fontFamily: "Arial, Helvetica, sans-serif" },
 
           navigationBarSmall: {
-            backgroundColor: "rgba(0, 0,0, 0.6)",
+            color: "black",
+            backgroundColor: "white",
           },
           navigationCardSmall: {
-            backgroundColor: "rgba(0, 0, 0, 0.6)",
+            color: "black",
+            backgroundColor: "white",
           },
           navigationBarLarge: {
-            color: "white",
-            backgroundColor: "rgba(0, 0, 0, 0.6)",
+            color: "black",
+            backgroundColor: "white",
           },
           animatinDelay: 5,
-          zIndex: 100000,
+          zIndex: 5,
         }}>
         {windowSize.width > 1000 ? (
-          <ul style={{ marginRight: "20px" }}>
+          <ul style={{ marginRight: "10px" }}>
             {/* TODO: Add search bar -------------------------------------------------------------------------- */}
-            <li>Search</li>
+            <li>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                x="0px"
+                y="0px"
+                width="30"
+                height="30"
+                viewBox="0 0 50 50">
+                <path d="M 21 3 C 11.621094 3 4 10.621094 4 20 C 4 29.378906 11.621094 37 21 37 C 24.710938 37 28.140625 35.804688 30.9375 33.78125 L 44.09375 46.90625 L 46.90625 44.09375 L 33.90625 31.0625 C 36.460938 28.085938 38 24.222656 38 20 C 38 10.621094 30.378906 3 21 3 Z M 21 5 C 29.296875 5 36 11.703125 36 20 C 36 28.296875 29.296875 35 21 35 C 12.703125 35 6 28.296875 6 20 C 6 11.703125 12.703125 5 21 5 Z"></path>
+              </svg>
+            </li>
           </ul>
         ) : (
           <ul style={{ marginRight: "10px" }}>

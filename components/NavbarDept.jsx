@@ -22,7 +22,7 @@ export default function NavbarDept({ className }) {
       <Menu setActive={setActive}>
         {/* Home */}
 
-        <Link href="/" className="text-white">
+        <Link href="/" className="text-black">
           Home
         </Link>
 
@@ -61,17 +61,17 @@ export default function NavbarDept({ className }) {
         </MenuItem>
 
         {/* Achivements & Events */}
-        <Link href="#" className="text-white">
+        <Link href="#" className="text-black">
           Achivements & Events
         </Link>
 
         {/* Join Us */}
-        <Link href="#" className="text-white">
+        <Link href="#" className="text-black">
           Join Us
         </Link>
 
         {/* Contact Us */}
-        <Link href="#" className="text-white">
+        <Link href="#" className="text-black">
           Contact Us
         </Link>
       </Menu>

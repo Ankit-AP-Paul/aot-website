@@ -40,11 +40,14 @@ export default function Header() {
   }, []);
   return (
     <>
-      <div>
-        <Banner />
+      <div className="relative w-fit h-fit">
+        <div className="absolute z-40">
+          <Banner />
+        </div>
+
         {windowSize.width > 1000 && (
-          <div className="relative w-full flex flex-col items-center justify-center">
-            <NavbarHome className="top-8" />
+          <div className="absolute w-full flex flex-col items-center justify-center z-50">
+            <NavbarHome className="top-0" />
           </div>
         )}
       </div>
